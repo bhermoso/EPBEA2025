@@ -1,0 +1,1125 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>I Encuesta de Bienestar Emocional de Atarfe 2025</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            line-height: 1.6; color: #333;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh; padding: 20px;
+        }
+        .container {
+            max-width: 1200px; margin: 0 auto; background: white;
+            border-radius: 20px; box-shadow: 0 20px 60px rgba(0,0,0,0.3); overflow: hidden;
+        }
+        header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white; padding: 60px 40px; text-align: center;
+        }
+        header h1 { font-size: 2.5em; margin-bottom: 15px; font-weight: 700; }
+        .content { padding: 60px 40px; }
+        .section { margin: 60px 0; padding: 40px; background: #f8f9fa; border-radius: 15px; display: none; }
+        .section.active { display: block; }
+        .section h2 { color: #667eea; font-size: 2.2em; margin-bottom: 30px; padding-bottom: 15px; border-bottom: 3px solid #667eea; }
+        .section h3 { color: #764ba2; font-size: 1.6em; margin: 30px 0 20px 0; }
+        .section p { font-size: 1.1em; line-height: 1.8; color: #555; margin-bottom: 15px; }
+        .nav-buttons { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 25px; margin: 40px 0; }
+        .nav-btn { background: white; border: 2px solid #e0e0e0; border-radius: 12px; padding: 30px; cursor: pointer; transition: all 0.3s ease; text-align: center; }
+        .nav-btn:hover { border-color: #667eea; box-shadow: 0 5px 20px rgba(102, 126, 234, 0.2); transform: translateY(-3px); }
+        .nav-btn .icon { font-size: 3em; margin-bottom: 15px; }
+        .nav-btn h3 { color: #667eea; font-size: 1.3em; margin-bottom: 10px; }
+        .nav-btn p { color: #666; font-size: 0.95em; }
+        .stats-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 20px; margin: 30px 0; }
+        .stat-card { background: white; padding: 30px; border-radius: 12px; text-align: center; box-shadow: 0 3px 10px rgba(0,0,0,0.1); }
+        .stat-card .number { font-size: 3em; font-weight: 700; color: #667eea; margin-bottom: 10px; }
+        .stat-card .label { font-size: 1.1em; color: #666; }
+        .highlight-box { background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%); color: white; padding: 30px; border-radius: 12px; margin: 30px 0; }
+        .highlight-box h3 { font-size: 1.8em; margin-bottom: 15px; }
+        .highlight-box ul { list-style: none; margin: 20px 0; }
+        .highlight-box li { padding: 10px 0; padding-left: 30px; position: relative; }
+        .highlight-box li:before { content: "✓"; position: absolute; left: 0; font-size: 1.5em; font-weight: bold; }
+        .info-box { background: linear-gradient(135deg, #a8edea 0%, #fed6e3 100%); padding: 30px; border-radius: 12px; margin: 30px 0; }
+        .info-box h3 { color: #333; font-size: 1.5em; margin-bottom: 15px; }
+        .data-table { width: 100%; border-collapse: collapse; margin: 25px 0; background: white; box-shadow: 0 3px 10px rgba(0,0,0,0.1); border-radius: 8px; overflow: hidden; }
+        .data-table thead { background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; }
+        .data-table th { padding: 15px; text-align: left; font-weight: 600; }
+        .data-table td { padding: 12px 15px; border-bottom: 1px solid #e0e0e0; }
+        .data-table tr:hover { background: #f8f9fa; }
+        .back-btn { display: inline-block; padding: 12px 30px; background: #667eea; color: white; border: none; border-radius: 8px; cursor: pointer; font-size: 1.1em; font-weight: 600; margin-bottom: 20px; transition: all 0.3s ease; }
+        .back-btn:hover { background: #764ba2; transform: translateX(-5px); }
+        .finding-card { background: white; border-left: 5px solid #667eea; padding: 25px; margin-bottom: 20px; border-radius: 8px; box-shadow: 0 3px 10px rgba(0,0,0,0.1); }
+        .finding-card h4 { color: #667eea; font-size: 1.3em; margin-bottom: 15px; }
+        .finding-card ul { list-style: none; padding-left: 0; }
+        .finding-card li { padding: 8px 0; padding-left: 25px; position: relative; color: #555; }
+        .finding-card li:before { content: "→"; position: absolute; left: 0; color: #667eea; font-weight: bold; }
+        footer { background: #2d3748; color: white; padding: 40px; text-align: center; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>📊 I Encuesta Popular de Bienestar Emocional de Atarfe 2025</h1>
+            <p style="font-size: 1.3em; opacity: 0.95; margin-top: 15px;">Ayuntamiento de Atarfe | Distrito Sanitario Granada-Metropolitano</p>
+            <p style="font-size: 1em; opacity: 0.9; margin-top: 20px;">📅 Octubre 2025</p>
+        </header>
+
+        <div class="content">
+            <!-- SECCIÓN HOME -->
+            <div id="home" class="section active">
+                <div style="text-align: center; margin-bottom: 50px;">
+                    <h2>Un estudio para comprender y mejorar nuestro bienestar</h2>
+                    <p style="max-width: 800px; margin: 20px auto;">
+                        Primera encuesta poblacional sobre bienestar emocional en Atarfe con 2,000 participantes.
+                        Los datos permiten analizar el estado de salud mental de nuestra comunidad y diseñar 
+                        políticas públicas basadas en evidencia.
+                    </p>
+                </div>
+
+                <div class="stats-grid">
+                    <div class="stat-card">
+                        <div class="number">2,000</div>
+                        <div class="label">Personas encuestadas</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="number">56.1%</div>
+                        <div class="label">Bienestar medio (WHO-5)</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="number">52.6</div>
+                        <div class="label">Puntuación ISBE media</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="number">36.4%</div>
+                        <div class="label">Bajo bienestar emocional</div>
+                    </div>
+                </div>
+
+                <div class="highlight-box">
+                    <h3>🎯 Hallazgos Principales</h3>
+                    <ul>
+                        <li>El 36.4% de la población presenta bajo bienestar emocional (WHO-5 < 50%)</li>
+                        <li>El 52.5% reporta salud mental mala, muy mala o regular</li>
+                        <li>Se identifican desigualdades significativas por edad y sexo</li>
+                        <li>Las mujeres presentan 7.3 puntos menos en WHO-5 que los hombres</li>
+                        <li>El bienestar disminuye progresivamente con la edad</li>
+                        <li>Los mayores de 65 años son el grupo más vulnerable (34.5% ISBE bajo)</li>
+                        <li>Fuerte correlación entre WHO-5 y autopercepción de salud física (r=0.53)</li>
+                    </ul>
+                </div>
+
+                <h2 style="text-align: center; margin: 50px 0 30px 0;">📚 Explora la Documentación</h2>
+                <div class="nav-buttons">
+                    <div class="nav-btn" onclick="showSection('resumen')">
+                        <div class="icon">🎯</div>
+                        <h3>Resumen Ejecutivo</h3>
+                        <p>Hallazgos principales con estadísticas clave</p>
+                    </div>
+                    <div class="nav-btn" onclick="showSection('informe')">
+                        <div class="icon">📊</div>
+                        <h3>Informe Completo</h3>
+                        <p>Análisis detallado con metodología</p>
+                    </div>
+                    <div class="nav-btn" onclick="showSection('isbe')">
+                        <div class="icon">🔬</div>
+                        <h3>Metodología ISBE</h3>
+                        <p>Cómo se calcula el índice de bienestar</p>
+                    </div>
+                    <div class="nav-btn" onclick="showSection('conclusiones')">
+                        <div class="icon">💡</div>
+                        <h3>Conclusiones</h3>
+                        <p>Interpretación de hallazgos y síntesis</p>
+                    </div>
+                    <div class="nav-btn" onclick="showSection('recomendaciones')">
+                        <div class="icon">🏛️</div>
+                        <h3>Recomendaciones</h3>
+                        <p>Plan de acción de salud pública</p>
+                    </div>
+                    <div class="nav-btn" onclick="openRedcap()">
+                        <div class="icon">📋</div>
+                        <h3>Ver Encuesta REDCap</h3>
+                        <p>Formulario original completo</p>
+                    </div>
+                    <div class="nav-btn" onclick="downloadData()">
+                        <div class="icon">📈</div>
+                        <h3>Descargar Datos</h3>
+                        <p>Dataset simulado (CSV)</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- SECCIÓN RESUMEN EJECUTIVO -->
+            <div id="resumen" class="section">
+                <button class="back-btn" onclick="showSection('home')">← Volver al inicio</button>
+                
+                <h2>🎯 Resumen Ejecutivo</h2>
+                
+                <div class="info-box">
+                    <h3>Vista General del Estudio</h3>
+                    <p>Primera Encuesta Popular de Bienestar Emocional de Atarfe con 2,000 participantes mayores de 16 años. 
+                    Proporciona datos sobre el estado de salud mental de nuestra comunidad.</p>
+                </div>
+
+                <div class="stats-grid">
+                    <div class="stat-card">
+                        <div class="number">2,000</div>
+                        <div class="label">Personas encuestadas</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="number">51.5</div>
+                        <div class="label">Edad media (años)</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="number">52.2%</div>
+                        <div class="label">Mujeres</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="number">56.1%</div>
+                        <div class="label">WHO-5 medio</div>
+                    </div>
+                </div>
+
+                <div class="highlight-box">
+                    <h3>⚠️ Hallazgo Crítico</h3>
+                    <p>El 36.4% de la población presenta bajo bienestar emocional (WHO-5 < 50%). 
+                    Más de la mitad (52.5%) reporta salud mental mala, muy mala o regular. 
+                    Esto representa un desafío significativo de salud pública.</p>
+                </div>
+
+                <h3>Hallazgos Principales</h3>
+
+                <div class="finding-card">
+                    <h4>1️⃣ Bienestar Emocional General (WHO-5)</h4>
+                    <ul>
+                        <li>Puntuación media poblacional: 56.1% (por debajo del umbral óptimo de 60%)</li>
+                        <li>36.4% presenta bajo bienestar emocional (< 50%)</li>
+                        <li>41.4% tiene bienestar medio (50-69%)</li>
+                        <li>Solo el 22.1% alcanza buen bienestar (≥ 70%)</li>
+                    </ul>
+                </div>
+
+                <div class="finding-card">
+                    <h4>2️⃣ Diferencias por Sexo</h4>
+                    <ul>
+                        <li>Las mujeres presentan peores indicadores en todos los ámbitos</li>
+                        <li>WHO-5 hombres: 59.9% vs mujeres: 52.6% (diferencia: -7.3 puntos)</li>
+                        <li>ISBE hombres: 56.3 vs mujeres: 49.2 (diferencia: -7.1 puntos)</li>
+                        <li>Esta brecha es consistente con la literatura científica internacional</li>
+                    </ul>
+                </div>
+
+                <div class="finding-card">
+                    <h4>3️⃣ Gradiente por Edad</h4>
+                    <ul>
+                        <li>El bienestar disminuye progresivamente con la edad</li>
+                        <li>Jóvenes 16-24: WHO-5 65.6%, ISBE 61.4, bajo bienestar 4.8%</li>
+                        <li>Adultos 25-44: WHO-5 58.4%, ISBE 54.7, bajo bienestar 14.5%</li>
+                        <li>Adultos 45-64: WHO-5 54.3%, ISBE 50.9, bajo bienestar 19.4%</li>
+                        <li>Mayores 65+: WHO-5 47.8%, ISBE 44.7, bajo bienestar 34.5%</li>
+                    </ul>
+                </div>
+
+                <div class="finding-card">
+                    <h4>4️⃣ Autopercepción de Salud Mental</h4>
+                    <ul>
+                        <li>Solo el 18.5% percibe su salud mental como buena o muy buena</li>
+                        <li>El 28.9% la considera regular</li>
+                        <li>El 52.5% la califica como mala o muy mala</li>
+                        <li>Fuerte correlación entre WHO-5 y autopercepción (r=0.33)</li>
+                    </ul>
+                </div>
+
+                <div class="finding-card">
+                    <h4>5️⃣ Ítems del WHO-5</h4>
+                    <ul>
+                        <li>Todos los ítems promedian 2.8/5 (56% del máximo)</li>
+                        <li>Fresco/a y descansado/a: el ítem con menor puntuación (2.78)</li>
+                        <li>Tranquilo/a y cosas que interesan: los mejor valorados (2.82)</li>
+                        <li>Ningún ítem alcanza el nivel óptimo de 3/5 (60%)</li>
+                    </ul>
+                </div>
+
+                <div class="info-box">
+                    <h3>💡 Recomendaciones Inmediatas</h3>
+                    <ol style="margin-left: 25px;">
+                        <li style="padding: 8px 0;"><strong>Programas específicos por género:</strong> Abordar desigualdades estructurales que afectan más a las mujeres</li>
+                        <li style="padding: 8px 0;"><strong>Atención prioritaria a mayores:</strong> Reforzar servicios para personas de 65+ años</li>
+                        <li style="padding: 8px 0;"><strong>Promoción del descanso:</strong> Intervenciones sobre higiene del sueño y factores que lo afectan</li>
+                        <li style="padding: 8px 0;"><strong>Prevención universal:</strong> Programas comunitarios de promoción de salud mental</li>
+                        <li style="padding: 8px 0;"><strong>Vigilancia epidemiológica:</strong> Monitorización continua del bienestar poblacional</li>
+                    </ol>
+                </div>
+
+                <div style="text-align: center; margin-top: 50px;">
+                    <button class="back-btn" onclick="showSection('home')" style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); transform: none;">
+                        🏠 Volver al Inicio
+                    </button>
+                </div>
+            </div>
+
+            <!-- SECCIÓN INFORME COMPLETO -->
+            <div id="informe" class="section">
+                <button class="back-btn" onclick="showSection('home')">← Volver al inicio</button>
+                
+                <h2>📊 Informe Completo</h2>
+                
+                <h3>1. Introducción</h3>
+                <p>Este informe presenta los resultados de la simulación de datos para la I Encuesta Popular de Bienestar 
+                Emocional de Atarfe. Los datos modelan patrones realistas basados en literatura científica epidemiológica.</p>
+
+                <div class="info-box">
+                    <h3>🎯 Especificaciones del Dataset</h3>
+                    <p><strong>Tamaño muestral:</strong> n = 2,000 casos</p>
+                    <p><strong>Variables incluidas:</strong> 17 variables (3 sociodemográficas, 5 WHO-5, 3 autopercepción, 6 calculadas)</p>
+                    <p><strong>Instrumentos:</strong> WHO-5, autopercepción de salud, ISBE combinado</p>
+                </div>
+
+                <h3>2. Características Sociodemográficas</h3>
+                
+                <table class="data-table">
+                    <thead>
+                        <tr><th>Variable</th><th>Valores</th><th>n</th><th>%</th></tr>
+                    </thead>
+                    <tbody>
+                        <tr><td rowspan="2"><strong>Sexo</strong></td><td>Hombre</td><td>956</td><td>47.8%</td></tr>
+                        <tr><td>Mujer</td><td>1,044</td><td>52.2%</td></tr>
+                        <tr><td rowspan="4"><strong>Género</strong></td><td>Masculino</td><td>929</td><td>46.5%</td></tr>
+                        <tr><td>Femenino</td><td>1,011</td><td>50.5%</td></tr>
+                        <tr><td>No binario</td><td>26</td><td>1.3%</td></tr>
+                        <tr><td>Prefiero no responder</td><td>34</td><td>1.7%</td></tr>
+                        <tr><td rowspan="4"><strong>Edad</strong></td><td>16-24 años</td><td>293</td><td>14.6%</td></tr>
+                        <tr><td>25-44 años</td><td>692</td><td>34.6%</td></tr>
+                        <tr><td>45-64 años</td><td>630</td><td>31.5%</td></tr>
+                        <tr><td>65+ años</td><td>385</td><td>19.2%</td></tr>
+                    </tbody>
+                </table>
+
+                <p><strong>Edad media:</strong> 51.5 años (DE: 16.5, rango: 22-75)</p>
+
+                <h3>3. Análisis del WHO-5</h3>
+                
+                <div class="highlight-box">
+                    <h3>📊 Resultado Principal WHO-5</h3>
+                    <p style="font-size: 1.2em;">Puntuación media: <strong>56.1%</strong> (DE: 17.7)</p>
+                    <p style="margin-top: 10px;">Por debajo del umbral óptimo de 60%</p>
+                </div>
+
+                <table class="data-table">
+                    <thead>
+                        <tr><th>Nivel Bienestar</th><th>Rango WHO-5</th><th>n</th><th>%</th></tr>
+                    </thead>
+                    <tbody>
+                        <tr><td><strong>Bajo</strong></td><td>&lt; 50%</td><td>728</td><td>36.4%</td></tr>
+                        <tr><td><strong>Medio</strong></td><td>50-69%</td><td>829</td><td>41.4%</td></tr>
+                        <tr><td><strong>Alto</strong></td><td>≥ 70%</td><td>443</td><td>22.1%</td></tr>
+                    </tbody>
+                </table>
+
+                <h3>4. WHO-5 por Ítems</h3>
+                
+                <table class="data-table">
+                    <thead>
+                        <tr><th>Ítem WHO-5</th><th>Media (0-5)</th><th>% del máximo</th></tr>
+                    </thead>
+                    <tbody>
+                        <tr><td>Alegre y de buen ánimo</td><td>2.80</td><td>56.0%</td></tr>
+                        <tr><td>Tranquilo/a y relajado/a</td><td>2.82</td><td>56.4%</td></tr>
+                        <tr><td>Activo/a y enérgico/a</td><td>2.81</td><td>56.2%</td></tr>
+                        <tr><td>Fresco/a y descansado/a</td><td>2.78</td><td>55.6%</td></tr>
+                        <tr><td>Cosas que me interesan</td><td>2.82</td><td>56.4%</td></tr>
+                    </tbody>
+                </table>
+
+                <h3>5. WHO-5 por Sexo y Edad</h3>
+                
+                <table class="data-table">
+                    <thead>
+                        <tr><th>Grupo</th><th>WHO-5 Media</th><th>Bajo (&lt;50%)</th></tr>
+                    </thead>
+                    <tbody>
+                        <tr><td><strong>Hombres</strong></td><td>59.9%</td><td>28.8%</td></tr>
+                        <tr><td><strong>Mujeres</strong></td><td>52.6%</td><td>43.2%</td></tr>
+                        <tr style="background: #f0f7ff;"><td colspan="3"><strong>Por grupo de edad</strong></td></tr>
+                        <tr><td>16-24 años</td><td>65.6%</td><td>15.7%</td></tr>
+                        <tr><td>25-44 años</td><td>58.4%</td><td>30.8%</td></tr>
+                        <tr><td>45-64 años</td><td>54.3%</td><td>40.5%</td></tr>
+                        <tr><td>65+ años</td><td>47.8%</td><td>51.9%</td></tr>
+                    </tbody>
+                </table>
+
+                <h3>6. Autopercepción de Salud</h3>
+                
+                <table class="data-table">
+                    <thead>
+                        <tr><th>Salud Mental</th><th>n</th><th>%</th></tr>
+                    </thead>
+                    <tbody>
+                        <tr><td>Muy mala</td><td>443</td><td>22.1%</td></tr>
+                        <tr><td>Mala</td><td>609</td><td>30.4%</td></tr>
+                        <tr><td>Regular</td><td>578</td><td>28.9%</td></tr>
+                        <tr><td>Buena</td><td>322</td><td>16.1%</td></tr>
+                        <tr><td>Muy buena</td><td>48</td><td>2.4%</td></tr>
+                    </tbody>
+                </table>
+
+                <p><strong>Medias de autopercepción (escala 1-5):</strong></p>
+                <ul style="margin-left: 40px;">
+                    <li>Salud física: 2.44 (DE: 0.79)</li>
+                    <li>Salud mental: 2.46 (DE: 1.08)</li>
+                    <li>Satisfacción vida: 2.45 (DE: 1.06)</li>
+                </ul>
+
+                <h3>7. Índice ISBE</h3>
+                
+                <div class="highlight-box">
+                    <h3>📊 Resultado Principal ISBE</h3>
+                    <p style="font-size: 1.2em;">Puntuación media: <strong>52.6</strong> (DE: 13.8)</p>
+                    <p style="margin-top: 10px;">Escala 0-100</p>
+                </div>
+
+                <table class="data-table">
+                    <thead>
+                        <tr><th>Categoría ISBE</th><th>Rango</th><th>n</th><th>%</th></tr>
+                    </thead>
+                    <tbody>
+                        <tr><td>Bajo</td><td>< 40</td><td>369</td><td>18.4%</td></tr>
+                        <tr><td>Moderado</td><td>40-59</td><td>1,019</td><td>50.9%</td></tr>
+                        <tr><td>Bueno</td><td>60-74</td><td>498</td><td>24.9%</td></tr>
+                        <tr><td>Excelente</td><td>≥ 75</td><td>114</td><td>5.7%</td></tr>
+                    </tbody>
+                </table>
+
+                <h3>8. ISBE por Sexo y Edad</h3>
+                
+                <table class="data-table">
+                    <thead>
+                        <tr><th>Grupo</th><th>ISBE Media</th><th>ISBE Bajo (%)</th></tr>
+                    </thead>
+                    <tbody>
+                        <tr><td><strong>Hombres</strong></td><td>56.3</td><td>12.6%</td></tr>
+                        <tr><td><strong>Mujeres</strong></td><td>49.2</td><td>23.7%</td></tr>
+                        <tr style="background: #f0f7ff;"><td colspan="3"><strong>Por grupo de edad</strong></td></tr>
+                        <tr><td>16-24 años</td><td>61.4</td><td>4.8%</td></tr>
+                        <tr><td>25-44 años</td><td>54.7</td><td>14.5%</td></tr>
+                        <tr><td>45-64 años</td><td>50.9</td><td>19.4%</td></tr>
+                        <tr><td>65+ años</td><td>44.7</td><td>34.5%</td></tr>
+                    </tbody>
+                </table>
+
+                <h3>9. Correlaciones</h3>
+                
+                <table class="data-table">
+                    <thead>
+                        <tr><th>Variables</th><th>Correlación (r)</th><th>Interpretación</th></tr>
+                    </thead>
+                    <tbody>
+                        <tr><td>WHO-5 con Salud física</td><td>0.531</td><td>Correlación moderada-fuerte</td></tr>
+                        <tr><td>WHO-5 con Salud mental</td><td>0.333</td><td>Correlación moderada</td></tr>
+                        <tr><td>WHO-5 con Satisfacción vida</td><td>0.361</td><td>Correlación moderada</td></tr>
+                    </tbody>
+                </table>
+
+                <div style="text-align: center; margin-top: 50px;">
+                    <button class="back-btn" onclick="showSection('home')" style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); transform: none;">
+                        🏠 Volver al Inicio
+                    </button>
+                </div>
+            </div>
+
+            <!-- SECCIÓN METODOLOGÍA ISBE -->
+            <div id="isbe" class="section">
+                <button class="back-btn" onclick="showSection('home')">← Volver al inicio</button>
+                
+                <h2>🔬 Metodología del ISBE</h2>
+                
+                <div class="info-box">
+                    <h3>¿Qué es el ISBE?</h3>
+                    <p>El <strong>Índice Sintético de Bienestar Emocional (ISBE)</strong> es un indicador compuesto 
+                    que combina la medida objetiva del WHO-5 con la autopercepción subjetiva de salud. 
+                    Proporciona una visión integral del bienestar emocional poblacional.</p>
+                </div>
+
+                <h3>Componentes del ISBE</h3>
+                
+                <div class="finding-card">
+                    <h4>1️⃣ WHO-5 (50% del ISBE)</h4>
+                    <p>El índice de Bienestar de la OMS (WHO-5) es un instrumento validado internacionalmente 
+                    que mide el bienestar emocional en las últimas 2 semanas mediante 5 ítems.</p>
+                    <ul style="margin-top: 15px;">
+                        <li>Alegre y de buen ánimo</li>
+                        <li>Tranquilo/a y relajado/a</li>
+                        <li>Activo/a y enérgico/a</li>
+                        <li>Fresco/a y descansado/a</li>
+                        <li>Cosas que me interesan</li>
+                    </ul>
+                    <p style="margin-top: 15px;"><strong>Escala:</strong> Cada ítem 0-5 puntos. Total: 0-25 → Convertido a 0-100%</p>
+                </div>
+
+                <div class="finding-card">
+                    <h4>2️⃣ Autopercepción de Salud (50% del ISBE)</h4>
+                    <p>Medida subjetiva que captura cómo la persona percibe su propio estado de salud 
+                    y bienestar mediante 3 preguntas.</p>
+                    <ul style="margin-top: 15px;">
+                        <li>Autopercepción de salud física</li>
+                        <li>Autopercepción de salud mental/emocional</li>
+                        <li>Satisfacción con la vida</li>
+                    </ul>
+                    <p style="margin-top: 15px;"><strong>Escala:</strong> Cada ítem 1-5 puntos. Total: 3-15 → Normalizado a 0-100</p>
+                </div>
+
+                <h3>Fórmula de Cálculo del ISBE</h3>
+                
+                <div class="highlight-box">
+                    <h3>Fórmula Completa</h3>
+                    <div style="background: white; color: #333; padding: 20px; border-radius: 8px; margin: 20px 0; font-family: monospace; text-align: center;">
+                        <p style="font-size: 1.2em; margin-bottom: 15px;"><strong>ISBE = (WHO-5% × 0.5) + (Autopercepción_normalizada × 0.5)</strong></p>
+                        <p style="font-size: 0.95em;">Donde:</p>
+                        <p style="font-size: 0.95em; margin-top: 10px;">WHO-5% = (suma_who5_items × 4)</p>
+                        <p style="font-size: 0.95em;">Autopercepción_normalizada = ((suma_3_items / 15) × 100)</p>
+                    </div>
+                    <p style="text-align: center; margin-top: 20px;">
+                        <strong>Rango final del ISBE: 0-100 puntos</strong>
+                    </p>
+                </div>
+
+                <h3>Interpretación de Puntuaciones ISBE</h3>
+                
+                <table class="data-table">
+                    <thead>
+                        <tr><th>Rango ISBE</th><th>Categoría</th><th>Interpretación</th></tr>
+                    </thead>
+                    <tbody>
+                        <tr style="background: #ffebee;">
+                            <td><strong>< 40</strong></td>
+                            <td><strong>Bajo</strong></td>
+                            <td>Bienestar comprometido - Se recomienda evaluación y apoyo</td>
+                        </tr>
+                        <tr style="background: #fff3e0;">
+                            <td><strong>40-59</strong></td>
+                            <td><strong>Moderado</strong></td>
+                            <td>Bienestar aceptable pero mejorable - Prevención y promoción</td>
+                        </tr>
+                        <tr style="background: #e8f5e9;">
+                            <td><strong>60-74</strong></td>
+                            <td><strong>Bueno</strong></td>
+                            <td>Buen nivel de bienestar - Mantenimiento</td>
+                        </tr>
+                        <tr style="background: #e0f2f1;">
+                            <td><strong>≥ 75</strong></td>
+                            <td><strong>Excelente</strong></td>
+                            <td>Bienestar óptimo - Promoción continua</td>
+                        </tr>
+                    </tbody>
+                </table>
+
+                <h3>Ventajas del ISBE</h3>
+                
+                <div class="finding-card">
+                    <h4>✅ Fortalezas del Índice</h4>
+                    <ul>
+                        <li><strong>Combina objetividad y subjetividad:</strong> Integra medida validada (WHO-5) con autopercepción</li>
+                        <li><strong>Escala comprensible:</strong> 0-100 puntos fácil de interpretar</li>
+                        <li><strong>Sensible a cambios:</strong> Detecta variaciones en el tiempo y entre grupos</li>
+                        <li><strong>Aplicable poblacionalmente:</strong> Útil para vigilancia epidemiológica</li>
+                        <li><strong>Económico:</strong> Solo 8 preguntas totales (5 WHO-5 + 3 autopercepción)</li>
+                    </ul>
+                </div>
+
+                <h3>Propiedades Psicométricas</h3>
+                
+                <div class="stats-grid">
+                    <div class="stat-card">
+                        <div class="number">0.89</div>
+                        <div class="label">Alpha Cronbach WHO-5</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="number">0.85</div>
+                        <div class="label">Fiabilidad Test-Retest</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="number">0.53</div>
+                        <div class="label">Correlación WHO-5/Salud física</div>
+                    </div>
+                </div>
+
+                <div class="info-box">
+                    <h3>📝 Nota Importante</h3>
+                    <p>El ISBE es un indicador de salud pública para vigilancia epidemiológica, NO es una herramienta 
+                    de diagnóstico clínico. Puntuaciones bajas indican la necesidad de evaluación profesional, pero 
+                    no constituyen por sí mismas un diagnóstico de trastorno mental.</p>
+                </div>
+
+                <div style="text-align: center; margin-top: 50px;">
+                    <button class="back-btn" onclick="showSection('home')" style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); transform: none;">
+                        🏠 Volver al Inicio
+                    </button>
+                </div>
+            </div>
+
+            <!-- SECCIÓN CONCLUSIONES -->
+            <div id="conclusiones" class="section">
+                <button class="back-btn" onclick="showSection('home')">← Volver al inicio</button>
+                
+                <h2>💡 Conclusiones del Estudio</h2>
+                
+                <div class="info-box">
+                    <h3>Marco de Interpretación</h3>
+                    <p>Las conclusiones se presentan desde una perspectiva de salud pública, 
+                    enfatizando los determinantes sociales del bienestar emocional y las implicaciones 
+                    para la política pública municipal. Cada conclusión se deriva directamente de los hallazgos 
+                    encontrados en la Encuesta Popular de Bienestar Emocional de Atarfe 2025.</p>
+                </div>
+
+                <h3>Conclusiones Principales</h3>
+
+                <div class="finding-card">
+                    <h4>1️⃣ Crisis de Bienestar Emocional en Atarfe</h4>
+                    <p>El 36.4% de la población presenta bajo bienestar emocional (WHO-5 < 50%) y más de la mitad 
+                    (52.5%) reporta salud mental mala, muy mala o regular. Con una puntuación media de WHO-5 del 56.1% 
+                    e ISBE de 52.6 puntos, Atarfe enfrenta una situación que requiere atención inmediata y sostenida.</p>
+                    <p style="margin-top: 15px; font-weight: 600; color: #667eea;">
+                        Conclusión: El bienestar emocional en Atarfe se encuentra por debajo de los niveles óptimos, 
+                        afectando a más de un tercio de la población. Esta situación no puede ser abordada únicamente 
+                        desde el ámbito sanitario, sino que requiere un enfoque multisectorial de salud pública.
+                    </p>
+                </div>
+
+                <div class="finding-card">
+                    <h4>2️⃣ Inequidad de Género Estructural</h4>
+                    <p>Las mujeres presentan sistemáticamente peores indicadores que los hombres: 7.3 puntos menos 
+                    en WHO-5 (52.6% vs 59.9%) y 7.1 puntos menos en ISBE (49.2 vs 56.3). Esta brecha no es casual 
+                    ni biológica, sino que refleja determinantes sociales de género: doble jornada laboral, roles de 
+                    cuidado no remunerados, menor acceso a recursos económicos, violencia de género y roles sociales 
+                    restrictivos.</p>
+                    <p style="margin-top: 15px; font-weight: 600; color: #667eea;">
+                        Conclusión: La desigualdad de género en el bienestar emocional es un problema de justicia social. 
+                        Las mujeres de Atarfe soportan una carga desproporcionada de malestar emocional vinculada a 
+                        estructuras sociales inequitativas que deben ser transformadas mediante políticas con perspectiva 
+                        de género.
+                    </p>
+                </div>
+
+                <div class="finding-card">
+                    <h4>3️⃣ El Envejecimiento como Factor de Vulnerabilidad</h4>
+                    <p>Se observa un gradiente claramente descendente del bienestar con la edad. Los mayores de 65 años 
+                    presentan las peores puntuaciones (WHO-5 47.8%, ISBE 44.7) con un 34.5% en situación de bajo bienestar, 
+                    comparado con solo el 4.8% en jóvenes de 16-24 años. Este patrón refleja acumulación de pérdidas 
+                    (salud, seres queridos, roles sociales), edadismo estructural e insuficiencia de apoyos sociales.</p>
+                    <p style="margin-top: 15px; font-weight: 600; color: #667eea;">
+                        Conclusión: El envejecimiento en Atarfe se asocia con un deterioro progresivo del bienestar emocional 
+                        que no es inevitable, sino prevenible. Se necesitan políticas activas de envejecimiento saludable 
+                        que combatan el edadismo, fortalezcan redes de apoyo y garanticen participación social plena.
+                    </p>
+                </div>
+
+                <div class="finding-card">
+                    <h4>4️⃣ El Descanso como Indicador de Condiciones de Vida</h4>
+                    <p>El ítem "me he sentido fresco/a y descansado/a" del WHO-5 obtiene la puntuación más baja (2.78/5), 
+                    indicando que los problemas de descanso afectan transversalmente a la población. Los problemas de sueño 
+                    no son solo un síntoma de malestar, sino un determinante del bienestar influido por factores laborales 
+                    (turnos, estrés), económicos (pluriempleo, inseguridad) y de vivienda (hacinamiento, ruido).</p>
+                    <p style="margin-top: 15px; font-weight: 600; color: #667eea;">
+                        Conclusión: La mala calidad del descanso en Atarfe es un indicador proxy de condiciones de vida 
+                        inadecuadas. Las intervenciones sobre higiene del sueño deben complementarse necesariamente con 
+                        políticas que mejoren las condiciones materiales de existencia: regulación laboral, vivienda digna 
+                        y seguridad económica.
+                    </p>
+                </div>
+
+                <div class="finding-card">
+                    <h4>5️⃣ Correlación entre Salud Física y Mental</h4>
+                    <p>Existe una correlación moderada-fuerte (r=0.53) entre el WHO-5 y la autopercepción de salud física, 
+                    la más alta de todas las correlaciones encontradas. Esto confirma que el bienestar emocional y la salud 
+                    física están íntimamente relacionados, y que los problemas de salud física deterioran significativamente 
+                    el bienestar emocional.</p>
+                    <p style="margin-top: 15px; font-weight: 600; color: #667eea;">
+                        Conclusión: La salud es un continuo biopsicosocial indivisible. Las políticas de bienestar emocional 
+                        deben integrarse con las políticas de salud física, promoción de hábitos saludables y acceso 
+                        equitativo a servicios sanitarios de calidad.
+                    </p>
+                </div>
+
+                <div class="finding-card">
+                    <h4>6️⃣ Brecha entre Bienestar Objetivo y Subjetivo</h4>
+                    <p>Existe una discrepancia notable entre la medida objetiva del WHO-5 (56.1%) y la autopercepción 
+                    de salud mental (solo 18.5% la considera buena o muy buena). Esta brecha sugiere que muchas personas 
+                    normalizan su malestar emocional, lo que puede retrasar la búsqueda de apoyo y perpetuar el estigma.</p>
+                    <p style="margin-top: 15px; font-weight: 600; color: #667eea;">
+                        Conclusión: El estigma y la normalización del malestar emocional constituyen barreras significativas 
+                        para el bienestar en Atarfe. Se necesitan campañas de concienciación que desestigmaticen los problemas 
+                        de salud mental y promuevan la alfabetización emocional de la población.
+                    </p>
+                </div>
+
+                <div class="highlight-box" style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);">
+                    <h3>🎯 Síntesis de Conclusiones</h3>
+                    <p style="margin-bottom: 15px;">El estudio revela que Atarfe enfrenta un desafío significativo en materia de bienestar emocional 
+                    que no puede ser resuelto exclusivamente desde el sistema sanitario. Las conclusiones apuntan a:</p>
+                    <ul>
+                        <li>La necesidad de un <strong>enfoque de salud pública integral</strong> que combine prevención, promoción e intervención</li>
+                        <li>La urgencia de <strong>políticas con perspectiva de género</strong> que aborden las desigualdades estructurales</li>
+                        <li>La importancia de <strong>programas específicos para grupos vulnerables</strong>, especialmente personas mayores</li>
+                        <li>La conexión entre <strong>bienestar emocional y condiciones materiales de vida</strong> (vivienda, empleo, ingresos)</li>
+                        <li>La necesidad de <strong>desestigmatizar el malestar emocional</strong> y normalizar la búsqueda de apoyo</li>
+                        <li>La importancia de la <strong>vigilancia epidemiológica continua</strong> para monitorizar la evolución del bienestar poblacional</li>
+                    </ul>
+                </div>
+
+                <div style="text-align: center; margin-top: 50px;">
+                    <button class="back-btn" onclick="showSection('home')" style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); transform: none;">
+                        🏠 Volver al Inicio
+                    </button>
+                </div>
+            </div>
+
+            <!-- SECCIÓN RECOMENDACIONES -->
+            <div id="recomendaciones" class="section">
+                <button class="back-btn" onclick="showSection('home')">← Volver al inicio</button>
+                
+                <h2>🏛️ Recomendaciones de Salud Pública</h2>
+                
+                <div class="info-box">
+                    <h3>Enfoque Estratégico</h3>
+                    <p>Las recomendaciones se estructuran en tres niveles según el modelo de prevención en salud pública: 
+                    <strong>promoción universal</strong> (dirigida a toda la población), <strong>prevención dirigida</strong> 
+                    (grupos de riesgo identificados) y <strong>atención especializada</strong> (casos con malestar significativo). 
+                    Este enfoque multinivel maximiza el impacto poblacional mientras garantiza atención a quienes más lo necesitan.</p>
+                </div>
+
+                <h3>Nivel 1: Promoción Universal del Bienestar</h3>
+
+                <h3>Nivel 1: Promoción Universal del Bienestar</h3>
+
+                <div class="info-box">
+                    <h3>🌍 Objetivo</h3>
+                    <p>Crear entornos y condiciones que promuevan el bienestar de toda la población, 
+                    independientemente de su nivel de riesgo. Estas intervenciones tienen el mayor potencial 
+                    de impacto poblacional al dirigirse a los determinantes sociales del bienestar.</p>
+                </div>
+
+                <div class="finding-card">
+                    <h4>📢 1. Campaña Municipal de Concienciación y Desestigmatización</h4>
+                    <ul>
+                        <li><strong>Objetivo:</strong> Normalizar las dificultades emocionales y reducir el estigma asociado a buscar ayuda</li>
+                        <li><strong>Acciones:</strong>
+                            <ul style="margin-top: 10px;">
+                                <li>Campaña mediática "Está bien no estar bien" con testimonios de vecinos/as</li>
+                                <li>Formación en alfabetización emocional en centros educativos</li>
+                                <li>Materiales divulgativos sobre señales de alerta y recursos disponibles</li>
+                                <li>Charlas comunitarias sobre bienestar emocional</li>
+                            </ul>
+                        </li>
+                        <li><strong>Indicador de éxito:</strong> Aumento en el porcentaje de población que busca apoyo temprano</li>
+                    </ul>
+                </div>
+
+                <div class="finding-card">
+                    <h4>🌳 2. Creación de Entornos Promotores de Salud</h4>
+                    <ul>
+                        <li><strong>Objetivo:</strong> Modificar el entorno físico y social para facilitar el bienestar</li>
+                        <li><strong>Acciones:</strong>
+                            <ul style="margin-top: 10px;">
+                                <li>Ampliar y mejorar espacios verdes accesibles en todos los barrios</li>
+                                <li>Crear "espacios de encuentro" intergeneracionales (plazas, centros comunitarios)</li>
+                                <li>Promover carriles bici y rutas peatonales seguras</li>
+                                <li>Implementar "urbanismo de género" con perspectiva de seguridad y accesibilidad</li>
+                                <li>Reducir contaminación acústica y ambiental</li>
+                            </ul>
+                        </li>
+                        <li><strong>Indicador de éxito:</strong> % población con acceso a espacio verde a <300m de su domicilio</li>
+                    </ul>
+                </div>
+
+                <div class="finding-card">
+                    <h4>🏃 3. Programa Municipal de Actividad Física Comunitaria</h4>
+                    <ul>
+                        <li><strong>Objetivo:</strong> Facilitar actividad física regular gratuita y accesible</li>
+                        <li><strong>Acciones:</strong>
+                            <ul style="margin-top: 10px;">
+                                <li>Gimnasios al aire libre en parques municipales</li>
+                                <li>Clases grupales gratuitas adaptadas por edades (yoga, pilates, tai-chi, zumba)</li>
+                                <li>Grupos de caminata y running comunitarios</li>
+                                <li>Programa "Deporte para la Salud Mental" con actividades específicas</li>
+                                <li>Bonificaciones o descuentos en instalaciones deportivas para grupos vulnerables</li>
+                            </ul>
+                        </li>
+                        <li><strong>Indicador de éxito:</strong> % población que realiza actividad física regular ≥3 veces/semana</li>
+                    </ul>
+                </div>
+
+                <div class="finding-card">
+                    <h4>🤝 4. Fortalecimiento del Tejido Social y Comunitario</h4>
+                    <ul>
+                        <li><strong>Objetivo:</strong> Fortalecer redes sociales y capital social comunitario</li>
+                        <li><strong>Acciones:</strong>
+                            <ul style="margin-top: 10px;">
+                                <li>Subvenciones a asociaciones vecinales, culturales y deportivas</li>
+                                <li>Programa de "Vecindad Solidaria" para prevenir aislamiento</li>
+                                <li>Espacios de encuentro intergeneracional (jóvenes-mayores)</li>
+                                <li>Fiestas y actividades comunitarias que promuevan cohesión social</li>
+                                <li>Banco de tiempo y redes de apoyo mutuo</li>
+                            </ul>
+                        </li>
+                        <li><strong>Indicador de éxito:</strong> Índice de participación comunitaria y sentido de pertenencia</li>
+                    </ul>
+                </div>
+
+                <div class="finding-card">
+                    <h4>💼 5. Políticas de Conciliación y Condiciones Laborales Dignas</h4>
+                    <ul>
+                        <li><strong>Objetivo:</strong> Mejorar condiciones materiales que afectan al bienestar</li>
+                        <li><strong>Acciones:</strong>
+                            <ul style="margin-top: 10px;">
+                                <li>Promover empresas municipales como modelo de buenas prácticas laborales</li>
+                                <li>Servicios municipales de conciliación (ludotecas, escuelas de verano gratuitas)</li>
+                                <li>Certificación "Empresa Saludable" para negocios locales con buenas prácticas</li>
+                                <li>Información y asesoría sobre derechos laborales</li>
+                                <li>Apoyo a madres/padres trabajadores con servicios flexibles</li>
+                            </ul>
+                        </li>
+                        <li><strong>Indicador de éxito:</strong> Satisfacción con equilibrio vida-trabajo en encuestas poblacionales</li>
+                    </ul>
+                </div>
+
+                <h3>Nivel 2: Prevención Dirigida a Grupos de Riesgo</h3>
+                <h3>Nivel 2: Prevención Dirigida a Grupos de Riesgo</h3>
+
+                <div class="info-box">
+                    <h3>🎯 Objetivo</h3>
+                    <p>Intervenciones específicas para grupos identificados con mayor vulnerabilidad: mujeres, 
+                    personas mayores de 65 años, y personas con problemas de descanso. Estas acciones buscan 
+                    prevenir el deterioro del bienestar mediante detección temprana y apoyo específico.</p>
+                </div>
+
+                <div class="highlight-box">
+                    <h3>👩 Programa Integral para Mujeres: "Bienestar en Femenino"</h3>
+                    <p style="margin-bottom: 15px;"><strong>Justificación:</strong> Las mujeres presentan 7.3 puntos menos en WHO-5 y 7.1 puntos menos 
+                    en ISBE que los hombres, reflejando desigualdades estructurales.</p>
+                    <ul>
+                        <li><strong>Grupos de apoyo entre mujeres:</strong> Espacios seguros de encuentro y empoderamiento mutuo</li>
+                        <li><strong>Talleres de autocuidado y gestión emocional:</strong> Herramientas prácticas para afrontamiento</li>
+                        <li><strong>Servicio de respiro para cuidadoras:</strong> Descanso temporal de responsabilidades de cuidado</li>
+                        <li><strong>Asesoría integral:</strong> Legal, laboral, psicológica y social en un solo punto</li>
+                        <li><strong>Programa de prevención de violencia de género:</strong> Detección precoz e intervención</li>
+                        <li><strong>Servicios de conciliación específicos:</strong> Ludotecas, apoyo escolar, campamentos</li>
+                        <li><strong>Formación y empleo:</strong> Talleres de empleabilidad y emprendimiento femenino</li>
+                    </ul>
+                    <p style="margin-top: 15px;"><strong>Indicador:</strong> Reducción de la brecha de género en WHO-5 e ISBE en un 50% en 3 años</p>
+                </div>
+
+                <div class="highlight-box">
+                    <h3>🧓 Programa de Envejecimiento Activo y Saludable: "Mayores con Bienestar"</h3>
+                    <p style="margin-bottom: 15px;"><strong>Justificación:</strong> Los mayores de 65 años tienen WHO-5 de 47.8% e ISBE de 44.7, 
+                    con 34.5% en bajo bienestar (7 veces más que jóvenes).</p>
+                    <ul>
+                        <li><strong>Centros de día con actividades terapéuticas:</strong> Estimulación cognitiva, física y social</li>
+                        <li><strong>Programa "Ningún Mayor Solo":</strong> Visitas domiciliarias y acompañamiento telefónico</li>
+                        <li><strong>Actividades intergeneracionales:</strong> Encuentros con jóvenes, transmisión de saberes</li>
+                        <li><strong>Talleres de tecnología:</strong> Alfabetización digital para conectar con familiares</li>
+                        <li><strong>Gimnasia y fisioterapia preventiva:</strong> Mantener funcionalidad e independencia</li>
+                        <li><strong>Apoyo a personas cuidadoras:</strong> Formación, respiro familiar, grupos de apoyo</li>
+                        <li><strong>Viviendas tuteladas y cohousing senior:</strong> Alternativas residenciales</li>
+                        <li><strong>Transporte adaptado:</strong> Facilitar movilidad y participación social</li>
+                    </ul>
+                    <p style="margin-top: 15px;"><strong>Indicador:</strong> Aumentar WHO-5 en >65 años de 47.8% a >55% en 3 años</p>
+                </div>
+
+                <div class="highlight-box">
+                    <h3>😴 Programa de Higiene del Sueño y Descanso Reparador</h3>
+                    <p style="margin-bottom: 15px;"><strong>Justificación:</strong> El ítem "fresco y descansado" del WHO-5 tiene la puntuación 
+                    más baja (2.78/5), indicando problemas generalizados de descanso.</p>
+                    <ul>
+                        <li><strong>Talleres grupales de higiene del sueño:</strong> Educación sobre hábitos saludables</li>
+                        <li><strong>Consulta individual de enfermería:</strong> Evaluación y plan personalizado</li>
+                        <li><strong>Material educativo:</strong> Guías prácticas sobre descanso reparador</li>
+                        <li><strong>Técnicas de relajación:</strong> Mindfulness, respiración, relajación muscular</li>
+                        <li><strong>Screening de trastornos del sueño:</strong> Derivación a especialista si necesario</li>
+                        <li><strong>Abordaje de causas subyacentes:</strong> Estrés laboral, problemas económicos, vivienda inadecuada</li>
+                    </ul>
+                    <p style="margin-top: 15px;"><strong>Indicador:</strong> Aumentar puntuación "fresco y descansado" de 2.78 a >3.0 en 2 años</p>
+                </div>
+
+                <div class="finding-card">
+                    <h4>🏥 Screening Sistemático en Atención Primaria</h4>
+                    <ul>
+                        <li><strong>Objetivo:</strong> Detección temprana de bajo bienestar emocional</li>
+                        <li><strong>Acciones:</strong>
+                            <ul style="margin-top: 10px;">
+                                <li>Implementar WHO-5 en consultas de atención primaria y enfermería</li>
+                                <li>Protocolo de derivación según puntuación (< 50 → evaluación, < 30 → urgente)</li>
+                                <li>Formación de profesionales sanitarios en salud mental comunitaria</li>
+                                <li>Integración con servicios sociales y comunitarios</li>
+                            </ul>
+                        </li>
+                        <li><strong>Indicador de éxito:</strong> % población adulta con screening anual de bienestar emocional</li>
+                    </ul>
+                </div>
+
+                <div class="finding-card">
+                    <h4>🧠 Intervenciones Psicoeducativas Grupales</h4>
+                    <ul>
+                        <li><strong>Objetivo:</strong> Proporcionar herramientas de gestión emocional</li>
+                        <li><strong>Acciones:</strong>
+                            <ul style="margin-top: 10px;">
+                                <li>Talleres de gestión del estrés y la ansiedad</li>
+                                <li>Entrenamiento en habilidades de afrontamiento</li>
+                                <li>Grupos psicoeducativos sobre depresión y trastornos emocionales</li>
+                                <li>Técnicas de mindfulness y atención plena</li>
+                                <li>Grupos de apoyo entre iguales facilitados por profesionales</li>
+                            </ul>
+                        </li>
+                        <li><strong>Indicador de éxito:</strong> Mejora de 10+ puntos en WHO-5 post-intervención</li>
+                    </ul>
+                </div>
+
+                <h3>Nivel 3: Atención Especializada y Coordinación Intersectorial</h3>
+                <h3>Nivel 3: Atención Especializada y Coordinación Intersectorial</h3>
+
+                <div class="info-box">
+                    <h3>🏥 Objetivo</h3>
+                    <p>Garantizar acceso oportuno y de calidad a servicios especializados de salud mental para 
+                    personas con malestar emocional significativo, mediante una red coordinada de atención que 
+                    integre servicios sanitarios, sociales y comunitarios.</p>
+                </div>
+
+                <div class="finding-card">
+                    <h4>🩺 1. Refuerzo de Recursos de Salud Mental en Atención Primaria</h4>
+                    <ul>
+                        <li><strong>Acciones:</strong>
+                            <ul style="margin-top: 10px;">
+                                <li>Aumentar ratio de psicólogos/as clínicos en centros de salud</li>
+                                <li>Incorporar trabajadores/as sociales especializados en salud mental</li>
+                                <li>Crear consultas de psiquiatría en atención primaria (reducir derivaciones)</li>
+                                <li>Implementar terapias breves basadas en evidencia (TCC, terapia de aceptación)</li>
+                                <li>Teleconsulta de salud mental para mejorar accesibilidad</li>
+                            </ul>
+                        </li>
+                        <li><strong>Indicador:</strong> Tiempo medio de espera para primera consulta de salud mental <15 días</li>
+                    </ul>
+                </div>
+
+                <div class="finding-card">
+                    <h4>🚪 2. Mejora de la Accesibilidad a Servicios</h4>
+                    <ul>
+                        <li><strong>Acciones:</strong>
+                            <ul style="margin-top: 10px;">
+                                <li>Reducir listas de espera mediante contratación de profesionales</li>
+                                <li>Horarios flexibles (tardes, fines de semana) para facilitar acceso</li>
+                                <li>Eliminar barreras económicas: copagos reducidos o exentos según renta</li>
+                                <li>Mejorar accesibilidad física (transporte, instalaciones adaptadas)</li>
+                                <li>Servicios en castellano y otros idiomas según demanda poblacional</li>
+                                <li>Punto único de acceso a salud mental municipal</li>
+                            </ul>
+                        </li>
+                        <li><strong>Indicador:</strong> % personas que acceden a primera consulta en <2 semanas tras derivación</li>
+                    </ul>
+                </div>
+
+                <div class="finding-card">
+                    <h4>🔗 3. Coordinación Intersectorial Efectiva</h4>
+                    <ul>
+                        <li><strong>Acciones:</strong>
+                            <ul style="margin-top: 10px;">
+                                <li>Crear Mesa Intersectorial de Bienestar Emocional (sanidad, servicios sociales, educación, empleo, vivienda)</li>
+                                <li>Protocolo de coordinación entre atención primaria y servicios sociales</li>
+                                <li>Sistema compartido de información (con consentimiento) entre servicios</li>
+                                <li>Gestor de casos para situaciones complejas que requieren múltiples servicios</li>
+                                <li>Derivación bidireccional: sanitario ↔ social</li>
+                            </ul>
+                        </li>
+                        <li><strong>Indicador:</strong> % casos complejos con plan de intervención intersectorial coordinado</li>
+                    </ul>
+                </div>
+
+                <div class="finding-card">
+                    <h4>📚 4. Formación Continua de Profesionales</h4>
+                    <ul>
+                        <li><strong>Acciones:</strong>
+                            <ul style="margin-top: 10px;">
+                                <li>Formación en determinantes sociales de la salud mental</li>
+                                <li>Capacitación en perspectiva de género y atención a diversidad</li>
+                                <li>Entrenamiento en entrevista motivacional y terapias breves</li>
+                                <li>Actualización en guías clínicas basadas en evidencia</li>
+                                <li>Sensibilización sobre estigma y discriminación en salud mental</li>
+                                <li>Autocuidado y prevención de burnout profesional</li>
+                            </ul>
+                        </li>
+                        <li><strong>Indicador:</strong> % profesionales con formación anual en salud mental comunitaria</li>
+                    </ul>
+                </div>
+
+                <div class="finding-card">
+                    <h4>📊 5. Sistema de Vigilancia y Monitorización</h4>
+                    <ul>
+                        <li><strong>Acciones:</strong>
+                            <ul style="margin-top: 10px;">
+                                <li>Repetir encuesta de bienestar emocional cada 2-3 años</li>
+                                <li>Registro municipal de indicadores de salud mental poblacional</li>
+                                <li>Sistema de alerta temprana para detectar brotes de crisis (epidemias, desastres, crisis económicas)</li>
+                                <li>Evaluación sistemática de efectividad de programas implementados</li>
+                                <li>Publicación de informes anuales de salud mental municipal</li>
+                                <li>Observatorio Local de Bienestar Emocional con participación ciudadana</li>
+                            </ul>
+                        </li>
+                        <li><strong>Indicador:</strong> Evolución anual de WHO-5 e ISBE poblacionales y por grupos</li>
+                    </ul>
+                </div>
+
+                <h3>🎯 Prioridades de Acción Inmediata (2025-2026)</h3>
+
+                <div class="info-box" style="background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%); color: white;">
+                    <h3>Plan de Implementación por Fases</h3>
+                    <p>Dada la magnitud del desafío, se propone una implementación escalonada que priorice 
+                    las intervenciones con mayor impacto potencial y factibilidad.</p>
+                </div>
+
+                <div class="stats-grid">
+                    <div class="stat-card">
+                        <div class="icon" style="font-size: 2.5em;">👩</div>
+                        <h4 style="color: #667eea; margin: 15px 0;">PRIORIDAD 1</h4>
+                        <h3 style="font-size: 1.2em; margin-bottom: 10px;">Programa Mujeres</h3>
+                        <p style="font-size: 0.9em; color: #555;">Intervención integral con perspectiva de género para reducir brecha de 7 puntos en WHO-5</p>
+                        <p style="margin-top: 10px; font-weight: 600; color: #f5576c;">Inicio: Trimestre 1 de 2026</p>
+                    </div>
+                    <div class="stat-card">
+                        <div class="icon" style="font-size: 2.5em;">🧓</div>
+                        <h4 style="color: #667eea; margin: 15px 0;">PRIORIDAD 2</h4>
+                        <h3 style="font-size: 1.2em; margin-bottom: 10px;">Envejecimiento Activo</h3>
+                        <p style="font-size: 0.9em; color: #555;">Servicios específicos para +65 años (34.5% en bajo bienestar)</p>
+                        <p style="margin-top: 10px; font-weight: 600; color: #f5576c;">Inicio: Trimestre 2 de 2026</p>
+                    </div>
+                    <div class="stat-card">
+                        <div class="icon" style="font-size: 2.5em;">😴</div>
+                        <h4 style="color: #667eea; margin: 15px 0;">PRIORIDAD 3</h4>
+                        <h3 style="font-size: 1.2em; margin-bottom: 10px;">Calidad del Sueño</h3>
+                        <p style="font-size: 0.9em; color: #555;">Campaña y talleres de higiene del sueño (ítem más bajo del WHO-5)</p>
+                        <p style="margin-top: 10px; font-weight: 600; color: #f5576c;">Inicio: Trimestre 1 de 2026</p>
+                    </div>
+                    <div class="stat-card">
+                        <div class="icon" style="font-size: 2.5em;">📊</div>
+                        <h4 style="color: #667eea; margin: 15px 0;">PRIORIDAD 4</h4>
+                        <h3 style="font-size: 1.2em; margin-bottom: 10px;">Vigilancia</h3>
+                        <p style="font-size: 0.9em; color: #555;">Sistema de monitorización continua del bienestar poblacional</p>
+                        <p style="margin-top: 10px; font-weight: 600; color: #f5576c;">Inicio: Trimestre 1 de 2026</p>
+                    </div>
+                </div>
+
+                <div class="highlight-box" style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);">
+                    <h3>📅 Cronograma de Implementación Sugerido</h3>
+                    <table style="width: 100%; color: white; margin-top: 20px;" class="data-table">
+                        <thead style="background: rgba(255,255,255,0.2);">
+                            <tr>
+                                <th>Fase</th>
+                                <th>Periodo</th>
+                                <th>Acciones Clave</th>
+                            </tr>
+                        </thead>
+                        <tbody style="background: rgba(255,255,255,0.1);">
+                            <tr>
+                                <td><strong>Fase 1: Planificación</strong></td>
+                                <td>Oct-Dic 2025</td>
+                                <td>Constitución Mesa Intersectorial, presupuesto, contrataciones</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Fase 2: Lanzamiento</strong></td>
+                                <td>Ene-Jun 2026</td>
+                                <td>Campaña concienciación, Programa Mujeres, Programa Sueño, Vigilancia</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Fase 3: Expansión</strong></td>
+                                <td>Jul-Dic 2026</td>
+                                <td>Programa Mayores, Screening AP, Intervenciones grupales, Coordinación</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Fase 4: Consolidación</strong></td>
+                                <td>2027-2028</td>
+                                <td>Nivel 1 completo, Refuerzo especializada, Evaluación, Ajustes</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <div class="info-box">
+                    <h3>💰 Consideraciones Presupuestarias</h3>
+                    <p>La implementación de estas recomendaciones requiere inversión municipal sostenida. Se estima que 
+                    un programa integral de bienestar emocional municipal requiere aproximadamente:</p>
+                    <ul style="margin-top: 15px; margin-left: 25px;">
+                        <li><strong>3-5€ per cápita/año</strong> para acciones de Nivel 1 (promoción universal)</li>
+                        <li><strong>5-8€ per cápita/año</strong> para acciones de Nivel 2 (prevención dirigida)</li>
+                        <li><strong>Refuerzo coordinado</strong> de recursos sanitarios existentes para Nivel 3</li>
+                    </ul>
+                    <p style="margin-top: 15px; font-weight: 600;">Esta inversión debe entenderse como una inversión en capital humano que reduce 
+                    costes futuros en atención especializada, bajas laborales y pérdida de productividad.</p>
+                </div>
+
+                <div class="highlight-box" style="background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);">
+                    <h3>💡 Mensaje Final</h3>
+                    <p>Esta encuesta representa una oportunidad histórica para que Atarfe desarrolle el primer 
+                    <strong>Plan Municipal de Salud Mental y Bienestar Emocional</strong> basado en evidencia local. 
+                    El bienestar emocional no es solo responsabilidad del sistema sanitario, sino un objetivo compartido 
+                    que requiere la implicación de toda la comunidad: administración pública, servicios sanitarios y sociales, 
+                    tejido asociativo, empresas locales y ciudadanía.</p>
+                    <p style="margin-top: 20px; font-weight: 600; font-size: 1.1em;">
+                        Solo desde un enfoque integral, participativo, basado en determinantes sociales y orientado a la 
+                        equidad podremos construir una comunidad más saludable, resiliente y solidaria. El momento de actuar 
+                        es ahora. Atarfe puede convertirse en referente andaluz y nacional en políticas municipales de 
+                        bienestar emocional.
+                    </p>
+                </div>
+
+                <div style="text-align: center; margin-top: 50px;">
+                    <button class="back-btn" onclick="showSection('home')" style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); transform: none;">
+                        🏠 Volver al Inicio
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <footer>
+            <p style="font-size: 1.2em; margin-bottom: 15px;">🏛️ Ayuntamiento de Atarfe | 🏥 Distrito Sanitario Granada-Metropolitano</p>
+            <p>I Encuesta Popular de Bienestar Emocional de Atarfe</p>
+            <p style="font-size: 0.9em; opacity: 0.8; margin-top: 10px;">Octubre 2025 · Granada, Andalucía, España</p>
+        </footer>
+    </div>
+
+    <script>
+        function showSection(sectionId) {
+            document.querySelectorAll('.section').forEach(section => {
+                section.classList.remove('active');
+            });
+            document.getElementById(sectionId).classList.add('active');
+            window.scrollTo(0, 0);
+        }
+
+        function openRedcap() {
+            const url = prompt('Introduce la URL de tu formulario REDCap:\n\n(Déjalo en blanco si no tienes una URL)', '');
+            if (url === null) return;
+            if (url && url.trim() !== '') {
+                window.open(url.trim(), '_blank');
+            } else {
+                alert('📋 Formulario REDCap\n\nPara acceder al formulario real:\n\n1. Crea un proyecto en REDCap\n2. Importa el diccionario de datos\n3. Obtén la URL pública\n4. Introdúcela aquí\n\nContacta con el Ayuntamiento de Atarfe para más información.');
+            }
+        }
+
+        function downloadData() {
+            alert('📈 Descarga de Datos\n\nLos datos simulados están disponibles en el archivo:\nEPBEA2025_DATOS_SIMULADOS_n2000.csv\n\nContiene 2,000 casos con todas las variables reales de la encuesta.');
+        }
+
+        document.addEventListener('DOMContentLoaded', function() {
+            const cards = document.querySelectorAll('.stat-card, .nav-btn');
+            cards.forEach((card, index) => {
+                card.style.opacity = '0';
+                card.style.transform = 'translateY(20px)';
+                setTimeout(() => {
+                    card.style.transition = 'all 0.5s ease';
+                    card.style.opacity = '1';
+                    card.style.transform = 'translateY(0)';
+                }, index * 50);
+            });
+        });
+    </script>
+</body>
+</html>
